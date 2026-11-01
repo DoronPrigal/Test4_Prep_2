@@ -1,15 +1,34 @@
 # Products REST API
 
-שרת REST API ב-FastAPI שמחזיר מוצרים מ-https://fakestoreapi.com ושומר Logs של כל בקשה ב-MySQL (`logs_db`).
+שרת REST API ב-FastAPI שמחזיר מוצרים מ-https://fakestoreapi.com ושומר Log של כל בקשת API בטבלת `logs` ב-MySQL (`logs_db`).
 
-## סטטוס
-בהכנה – תכנון ראשוני.
+## Routes
+| Route | תיאור |
+|---|---|
+| `GET /api/products` | כל המוצרים |
+| `GET /api/search/{text}` | מוצרים שה-title שלהם מכיל את הטקסט (ללא הבדל בין אותיות גדולות/קטנות) |
+| `GET /api/price/{max}` | מוצרים במחיר קטן או שווה ל-max |
+| `GET /api/rating/{min}` | מוצרים עם `rating.rate` גדול או שווה ל-min (0–5) |
 
-## Routes (מתוכנן)
-- `GET /api/products`
-- `GET /api/search/<text>`
-- `GET /api/price/<max>`
-- `GET /api/rating/<min>`
+תיעוד Swagger: http://localhost:4000/docs
 
-## הרצה
-יעודכן בהמשך (Backend, Docker).
+## טבלת logs
+`id`, `Description`, `Method`, `Route`, `Duration_ms`. נרשמות גם בקשות שנכשלו (למשל 422).
+
+## הרצה עם Docker (פקודה אחת)
+1. `copy .env.example .env` ולשנות את `DB_PASSWORD`.
+2. `docker compose up -d --build`
+
+השרת זמין ב-http://localhost:4000
+
+## הרצה מקומית
+```
+docker compose up -d db
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --port 4000
+```
+
+## Postman
+לייבא את `Products_API.postman_collection.json`.
