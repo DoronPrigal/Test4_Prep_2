@@ -2,7 +2,9 @@ import os
 import time
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
+from pathlib import Path
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 from app.database import init_db, save_log
 from app.routes import products, search, price, rating
 
@@ -33,3 +35,8 @@ async def log_requests(request: Request, call_next):
 
 for module in (products, search, price, rating):
     app.include_router(module.router, prefix="/api")
+
+# הגשת ה-Frontend (קבצי ה-Build) בנתיב / - חייב להיות אחרי ה-Routes של ה-API
+dist = Path(__file__).parent.parent / "frontend" / "dist"
+if dist.exists():
+    app.mount("/", StaticFiles(directory=dist, html=True), name="frontend")
