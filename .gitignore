@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# סודות
+.env
+
+# Node / React
+node_modules/
+
+# Docker / מערכת
+*.log
+.DS_Store
+.vscode/
