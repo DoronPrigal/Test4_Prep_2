@@ -42,9 +42,12 @@ export default function SearchBar({ onFilter }: Props) {
         <input id="rating" type="number" min="0" max="5" step="any" value={values.rating} onChange={(e) => change("rating", e.target.value)} placeholder="4.6" />
         <button type="submit">סנן</button>
       </form>
-      <button type="button" className="all glass" onClick={showAll}>
-        כל המוצרים
-      </button>
+      <div className="glass all">
+        <span>הצגת כל המוצרים</span>
+        <button type="button" onClick={showAll}>
+          איפוס סינון
+        </button>
+      </div>
     </section>
   );
 }
