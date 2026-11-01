@@ -1,0 +1,179 @@
+:root {
+  --text: #f4f6ff;
+  --muted: #c3c9e6;
+  --accent: #8ab4ff;
+  --glass: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #1b1f4b, #3a2a6b 50%, #0f4c75);
+  background-attachment: fixed;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+/* Glassmorphism */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* אזור הסינון - Bento */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.filters form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #0b1030;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.filters .all {
+  color: var(--text);
+  background: var(--glass);
+  border: 1px solid var(--border);
+}
+
+:focus-visible {
+  outline: 3px solid #ffd166;
+  outline-offset: 2px;
+}
+
+.status {
+  min-height: 28px;
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.error {
+  color: #ffb3b3;
+}
+
+/* גריד המוצרים - Bento: כל כרטיס רביעי רחב יותר */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  animation: fade-in 0.5s ease both;
+  transition: transform 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card:nth-child(4n + 1) {
+  grid-column: span 2;
+}
+
+.card img {
+  height: 180px;
+  width: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.category {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.price {
+  font-weight: bold;
+  color: var(--accent);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 560px) {
+  .card:nth-child(4n + 1) {
+    grid-column: span 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
