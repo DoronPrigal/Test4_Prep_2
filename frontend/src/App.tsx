@@ -34,7 +34,7 @@ export default function App() {
       <div aria-live="polite" className="status">
         {loading && "טוען..."}
         {error && <span className="error">{error}</span>}
-        {!loading && !error && products.length === 0 && "לא נמצאו מוצרים"}
+        {!loading && !error && (products.length === 0 ? "לא נמצאו מוצרים" : `נמצאו ${products.length} מוצרים`)}
       </div>
       <section className="grid" aria-label="רשימת מוצרים">
         {products.map((p) => (
