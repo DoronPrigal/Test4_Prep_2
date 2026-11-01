@@ -82,9 +82,21 @@ button:hover {
 }
 
 .filters .all {
-  color: var(--text);
-  background: var(--glass);
-  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.filters .all span {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+input::placeholder {
+  color: #d5daf2;
+  opacity: 1;
 }
 
 :focus-visible {
@@ -127,13 +139,19 @@ button:hover {
   grid-column: span 2;
 }
 
+/* רקע רך לתמונות: הלבן של התמונה מתמזג עם הרקע (multiply) */
+.thumb {
+  background: #dde3ff;
+  border-radius: 12px;
+  padding: 8px;
+}
+
 .card img {
+  display: block;
   height: 180px;
   width: 100%;
   object-fit: contain;
-  background: #fff;
-  border-radius: 12px;
-  padding: 8px;
+  mix-blend-mode: multiply;
 }
 
 .card h2 {
