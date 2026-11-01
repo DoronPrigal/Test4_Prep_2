@@ -19,7 +19,8 @@
 1. `copy .env.example .env` ולשנות את `DB_PASSWORD`.
 2. `docker compose up -d --build`
 
-השרת זמין ב-http://localhost:4000
+השרת (כולל ה-Frontend) זמין ב-http://localhost:4000
+ה-Dockerfile בונה את ה-Frontend אוטומטית.
 
 ## הרצה מקומית
 ```
@@ -28,6 +29,15 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --port 4000
+```
+
+## Frontend (React + TypeScript)
+בתיקייה `frontend`. השרת מגיש את `frontend/dist` בנתיב `/`.
+```
+cd frontend
+npm install
+npm run build      # יוצר את frontend/dist, והשרת מגיש אותו ב-http://localhost:4000
+npm run dev        # פיתוח: http://localhost:5173 (מפנה את /api לשרת)
 ```
 
 ## Postman
