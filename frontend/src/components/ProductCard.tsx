@@ -3,7 +3,9 @@ import { Product } from "../types";
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <article className="card glass">
-      <img src={product.image} alt={product.title} loading="lazy" />
+      <div className="thumb">
+        <img src={product.image} alt={product.title} loading="lazy" />
+      </div>
       <h2>{product.title}</h2>
       <p className="category">{product.category}</p>
       <div className="meta">
